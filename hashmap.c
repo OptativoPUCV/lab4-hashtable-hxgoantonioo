@@ -122,18 +122,18 @@ Pair * firstMap(HashMap * map)
     return NULL;
 }
 
-Pair * nextMap(HashMap * map) 
-{
-  if(map == NULL) return NULL;
-  long start = map->current;
-  map->current = (map->current + 1) % map->capacity;
-  while (map->current != start) 
-  {
-      if (map->buckets[map->current] != NULL && map->buckets[map->current]->key != NULL)
-      {
-          return map->buckets[map->current];
-      }
-      map->current = (map->current + 1) % map->capacity;
-  }
-  return NULL;
+Pair * nextMap(HashMap * map) {
+    if(map == NULL) return NULL;
+    long start = map->current;
+    map->current = (map->current + 1) % map->capacity;
+    while (map->current != start) 
+    {
+        if (map->buckets[map->current] != NULL && map->buckets[map->current]->key != NULL) 
+        {
+            return map->buckets[map->current];
+        }
+        map->current = (map->current + 1) % map->capacity;
+    }
+    map->current = -1; // Reset current index when reaching the end
+    return NULL;
 }
