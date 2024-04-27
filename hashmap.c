@@ -143,20 +143,21 @@ Pair * firstMap(HashMap * map)
 
 Pair * nextMap(HashMap * map) {
     if (map == NULL) return NULL;
-
     if (map->current == -1) {
         map->current = 0; // Start from the beginning
     } else {
         map->current = (map->current + 1) % map->capacity;
+        if (map->current == 0) {
+            return NULL; // Reached the end, return NULL
+        }
     }
     long start = map->current;
-
     do {
         if (map->buckets[map->current] != NULL && map->buckets[map->current]->key != NULL) {
             return map->buckets[map->current];
         }
-
         map->current = (map->current + 1) % map->capacity;
-    } while (map->current != start);
+    } while (map->current != start); // Ensure we don't loop indefinitely
+    map->current = -1; // Reset current index to -1 when reaching the end
     return NULL;
 }
