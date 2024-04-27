@@ -49,3 +49,9 @@ hashmap.c:117:44: error: returning ‘char *’ from a function with incompatibl
 cc1: all warnings being treated as errors
 Compilation failed
 7adc744
+Sat 27 Apr 2024 02:50:40 AM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  13|2
+total_score: 50/70
+713c5ca
