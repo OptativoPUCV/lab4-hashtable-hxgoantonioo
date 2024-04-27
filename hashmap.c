@@ -56,10 +56,29 @@ void insertMap(HashMap * map, char * key, void * value)
     map->size++;
 }
 
-void enlarge(HashMap * map) {
-    enlarge_called = 1; //no borrar (testing purposes)
+void enlarge(HashMap * map) 
+{
+    if(map == NULL) return;
 
+    long new_capacity = map->capacity * 2; // Double the capacity
 
+    Pair **new_buckets = (Pair **)calloc(new_capacity, sizeof(Pair *));
+
+    // Re-hash existing key-value pairs into the new_buckets
+    for (long i = 0; i < map->capacity; i++) {
+        if (map->buckets[i] != NULL && map->buckets[i]->key != NULL) {
+            long index = hash(map->buckets[i]->key, new_capacity);
+            while (new_buckets[index] != NULL && new_buckets[index]->key != NULL) {
+                index = (index + 1) % new_capacity; // Linear probing for collision handling
+            }
+            new_buckets[index] = map->buckets[i];
+        }
+    }
+
+    free(map->buckets); // Free the old buckets memory
+
+    map->buckets = new_buckets;
+    map->capacity = new_capacity;
 }
 
 
