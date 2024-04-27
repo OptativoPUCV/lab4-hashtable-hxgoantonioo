@@ -73,3 +73,9 @@ Sat 27 Apr 2024 02:55:00 AM UTC:
  tests:  15|2
 total_score: 50/70
 d35fe6f
+Sat 27 Apr 2024 02:55:57 AM UTC: 
+ hashmap.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
+ tests:  15|2
+total_score: 50/70
+3af3772
